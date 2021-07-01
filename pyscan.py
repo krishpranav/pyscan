@@ -24,3 +24,7 @@ allModules = [["http", "Scan for open HTTP ports, and get the titles."],
               ["manual", "Scan custom ports."], ["template", "Template module for developers."]]
 
 textToModule = [["http", http], ["template", template], ["printer", printer], ["gameserver", gameserver], ["ssh", ssh], ["manual", manual], ["mongodb", mongodb], ["mysql", mysql]]
+
+inModule = False
+currentModule = ""
+moduleOptions = []
