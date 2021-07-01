@@ -16,7 +16,7 @@ python3 pyscan.py
 python3 pyscan.py
 pyscan $> use ssh
 pyscan/ssh $> options
-pyscan/ssh $> set network 192.168.0/24
+pyscan/ssh $> set network 192.168.0.0/24
 pyscan/ssh $> run
 ```
 
