@@ -44,3 +44,17 @@ def createIPList(network):
 def print1(data):
     if verbose:
         print("\033[K" + data)
+
+def checkServer(address, port):
+    s = socket.socket()
+    s.settimeout(float(portTimeout))
+    try:
+        s.connect((address, port))
+        s.close()
+        return True
+    except socket.error:
+        s.close()
+        return False
+    except:
+        s.close()
+        return "FAIL"
