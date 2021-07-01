@@ -28,4 +28,8 @@ class ThreadManager(object):
     
     def getID(self):
         return self.i + 1
-        
+
+def coreOptions():
+    options = [["network", "IP range to scan", ""], ["port-timeout", "Timeout (in sec) for port 80.", "0.3"],
+               ["threads", "Number of threads to run.", "100"], ["verbose", "Show verbose output.", "true"]]
+    return options
