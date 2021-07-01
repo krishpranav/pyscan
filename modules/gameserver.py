@@ -25,4 +25,7 @@ class ThreadManager(object):
             self.i += 1 
             return ip
         return 0
+    
+    def getID(self):
+        return self.i + 1
         
