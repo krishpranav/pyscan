@@ -19,5 +19,3 @@ pyscan/ssh $> options
 pyscan/ssh $> set network 192.168.0.0/24
 pyscan/ssh $> run
 ```
-
-- note this tool is under development
