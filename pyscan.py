@@ -28,3 +28,15 @@ textToModule = [["http", http], ["template", template], ["printer", printer], ["
 inModule = False
 currentModule = ""
 moduleOptions = []
+
+
+def commandHandler(command):
+    command = str(command)
+    command = command.lower()
+
+    global inModule
+    global currentModule
+    global moduleOptions
+    global currentModuleFile
+
+    
