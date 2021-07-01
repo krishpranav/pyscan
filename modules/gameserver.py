@@ -18,4 +18,11 @@ class ThreadManager(object):
     def __init__(self, ipList):
         self.allIps = ipList
         self.size = len(ipList)
+
+    def getNextIp(self):
+        if not (self.i >= self.size -1):
+            ip = self.allIps[self.i]
+            self.i += 1 
+            return ip
+        return 0
         
