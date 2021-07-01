@@ -15,3 +15,12 @@ except KeyboardInterrupt:
 except:
     print(RED + "\n[!] Some Modules Not Found Please Install It And Try Again. [!]" + END)
     raise SystemExit
+
+allModules = [["http", "Scan for open HTTP ports, and get the titles."],
+              ["mongodb", "Scan for open MongoDB instances, and check if they are password protected."],
+              ["mysql", "Scan for open MySQL servers, and try to log in with the default credentials."],
+              ["ssh", "Scan for open SSH ports."], ["printer", "Scan for open printer ports and websites."],
+              ["gameserver", "Scan for open game server ports."],
+              ["manual", "Scan custom ports."], ["template", "Template module for developers."]]
+
+textToModule = [["http", http], ["template", template], ["printer", printer], ["gameserver", gameserver], ["ssh", ssh], ["manual", manual], ["mongodb", mongodb], ["mysql", mysql]]
