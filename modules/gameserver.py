@@ -33,3 +33,14 @@ def coreOptions():
     options = [["network", "IP range to scan", ""], ["port-timeout", "Timeout (in sec) for port 80.", "0.3"],
                ["threads", "Number of threads to run.", "100"], ["verbose", "Show verbose output.", "true"]]
     return options
+
+def createIPList(network):
+    net4 = ipaddress.ip_network(network)
+    ipList = []
+    for x in net4.hosts():
+        ipList.append(x)
+    return ipList
+
+def print1(data):
+    if verbose:
+        print("\033[K" + data)
