@@ -39,4 +39,7 @@ def commandHandler(command):
     global moduleOptions
     global currentModuleFile
 
-    
+    def helpPrint(name, desc, usage):
+        print("\t" + YELLOW + name + GREEN + ": " + BLUE + desc + GREEN + " - '" + usage + "'" + END)
+    if command == "help":
+        
