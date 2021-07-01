@@ -58,3 +58,18 @@ def checkServer(address, port):
     except:
         s.close()
         return "FAIL"
+
+def writeToFile(line):
+    file = open(filename, "a")
+    file.write(line)
+    file.close()
+
+def restart_line():
+    sys.stdout.write('\r')
+    sys.stdout.flush()
+
+def statusWidget():
+    sys.stdout.write(GREEN + "[" + status + "] " + YELLOW + str(threadManager.getID()) + GREEN + " / " + YELLOW + str(
+        allIPs) + GREEN + " hosts done." + END)
+    restart_line()
+    sys.stdout.flush()
