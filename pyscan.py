@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+# -.- coding: utf-8 -.-
 
-# colors
 BLUE, RED, WHITE, YELLOW, MAGENTA, GREEN, END = '\33[1;94m', '\033[1;91m', '\33[1;97m', '\33[1;93m', '\033[1;35m', '\033[1;32m', '\033[0m'
+
 
 try:
     import os
     import traceback
     import argparse
+
+    # MODULE IMPORT
     from modules import *
 except KeyboardInterrupt:
-    print(GREEN + "\n[+] You Pressed Ctrl+C..." + END)
-    print(GREEN + "\nExiting" + END)
+    print(GREEN + "\n[I] Shutting down..." + END)
+    raise SystemExit
 except:
-    print(RED + "\n[!] Some Modules Not Found Please Install It And Try Again. [!]" + END)
+    print(RED + "\n[!] Module input failed. Please make sure to install the dependencies." + END)
     raise SystemExit
 
 allModules = [["http", "Scan for open HTTP ports, and get the titles."],
@@ -29,7 +31,6 @@ inModule = False
 currentModule = ""
 moduleOptions = []
 
-
 def commandHandler(command):
     command = str(command)
     command = command.lower()
@@ -39,7 +40,9 @@ def commandHandler(command):
     global moduleOptions
     global currentModuleFile
 
+    # COMMANDS
 
+    # HELP
     def helpPrint(name, desc, usage):
         print("\t" + YELLOW + name + GREEN + ": " + BLUE + desc + GREEN + " - '" + usage + "'" + END)
     if command == "help":
@@ -53,7 +56,7 @@ def commandHandler(command):
         helpPrint("EXIT", "Shut down pyscan", "exit")
         print()
 
-
+    # USE
     elif command.startswith("use "):
         if not inModule:
             tempModule = command.replace("use ", "")
@@ -76,6 +79,7 @@ def commandHandler(command):
     elif command == "use":
         print(RED + "[!] Usage: 'use " + YELLOW + "module_name" + RED + "'" + END)
 
+    # OPTIONS
     elif command == "options":
         if inModule:
             print(GREEN + "\n Options for module '" + YELLOW + currentModule + GREEN + "':" + END)
@@ -138,27 +142,30 @@ def commandHandler(command):
                 print(RED + "[!] Not all options set." + END)
         else:
             print(RED + "[!] No module selected." + END)
-
+    # BACK
     elif command == "back":
         if inModule:
             inModule = False
             currentModule = ""
             moduleOptions = []
 
-
+    # EXIT
     elif command == "exit":
         print(GREEN + "[I] Shutting down..." + END)
         raise SystemExit
 
+    # MODULES
     elif command == "modules":
         print(GREEN + "\nAvailable modules:" + END)
         for module in allModules:
             print(YELLOW + "\t" + module[0] + GREEN + " - " + BLUE + module[1] + END)
         print()
 
+    # CLEAR
     elif command == "clear":
         os.system("clear||cls")
 
+    # DEBUG
     elif command == "debug":
         print("inModule: " + str(inModule))
         print(currentModule)
@@ -170,4 +177,46 @@ def commandHandler(command):
     else:
         print(RED + "[!] Unknown command: '" + YELLOW + command + RED + "'. Type '" + YELLOW + "help" + RED + "' for all available commands." + END)
 
+parser = argparse.ArgumentParser(description="pyscan")
+parser.add_argument("--test", action='store_true')
+args, leftovers = parser.parse_known_args()
 
+if args.test:
+    print("Test build detected. Exiting...")
+    exit()
+
+banner = """
+PYSCAN
+"""
+
+try:
+    print(GREEN + banner + "                                             v1.0 by @krishpranav\n" + END)
+except:
+    print(GREEN + banner + "                                                            v1.0 by @krishpranav\n" + END)
+
+moduleList = ""
+i = 0
+for module in allModules:
+    i += 1
+    if i%7 == 0:
+        moduleList += "\n"
+    moduleList = moduleList + YELLOW + module[0] + GREEN + ", "
+moduleList = moduleList[:-2]
+print(GREEN + "Modules Available: " + moduleList + "\n")
+
+while True:
+    if inModule:
+        inputHeader = BLUE + "pyscan" + RED + "/" + currentModule + BLUE + " $> " + END
+    else:
+        inputHeader = BLUE + "pyscan $> " + END
+
+    try:
+        commandHandler(input(inputHeader))
+    except KeyboardInterrupt:
+        print(GREEN + "\n[I] Shutting down..." + END)
+        raise SystemExit
+    except Exception as e:
+        print(RED + "\n[!] pyscan crashed...\n[!] Debug info: \n")
+        print(traceback.format_exc())
+        print("\n" + END)
+        exit()
